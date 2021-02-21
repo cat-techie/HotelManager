@@ -1,0 +1,7 @@
+[Connect_PostgreSQL]
+psql_host =
+psql_ip = 192.168.56.101
+psql_port = 5432
+psql_user = shapochka
+psql_pswd = 31657101hd
+psql_db_name = HotelDB
