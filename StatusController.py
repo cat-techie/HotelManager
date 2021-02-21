@@ -4,22 +4,22 @@ import psycopg2
 from PyQt5 import uic, QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 
-Form, Window = uic.loadUiType("Views/Categories.ui")
-conn = psycopg2.connect(dbname="HotelDB", user="shapochka", port="5432",
-                        password="31657101hd", host="", hostaddr="192.168.56.101")
+Form, Window = uic.loadUiType("Views/Statuses.ui")
+conn = psycopg2.connect(dbname="HotelDB", user="cat-techie", port="5432",
+                        password="31657101hd", host="", hostaddr="")
 cursor = conn.cursor()
 
 app = QApplication([])
 window = Window()
-window.setFixedSize(880, 640)
+window.setFixedSize(630, 330)
 form = Form()
 form.setupUi(window)
 window.show()
 
 
-def printCategories():
+def printRecords():
     print("Update")
-    cursor.execute("SELECT * FROM categories;")
+    cursor.execute("SELECT * FROM status;")
     row = 0
     for tup in cursor:
         col = 0
@@ -39,29 +39,27 @@ def changeRecord():
 
 def addRecord():
     categoryType = form.adding_type.text()
-    desc = form.adding_desc.text()
     print("Add")
     if categoryType != "":
-        cursor.execute("INSERT INTO categories VALUES (DEFAULT, \'{0}\', \'{1}\');".
-                       format(categoryType, desc))
+        cursor.execute("INSERT INTO status VALUES (DEFAULT, \'{0}\');".
+                       format(categoryType))
     conn.commit()
-    printCategories()
-
+    printRecords()
+    form.adding_type.clear()
 
 def deleteRecord():
     categoryType = form.delete_type.text()
     categoryID = form.id_category.text()
     print("Delete")
     if categoryID != "":
-        cursor.execute("DELETE FROM categories WHERE id=\'{0}\';".format(categoryID))
+        cursor.execute("DELETE FROM position WHERE position_id=\'{0}\';".format(categoryID))
     elif categoryType != "":
-        cursor.execute("DELETE FROM categories WHERE name=\'{0}\';".format(categoryType))
+        cursor.execute("DELETE FROM position WHERE name=\'{0}\';".format(categoryType))
     conn.commit()
-    printCategories()
+    printRecords()
 
 
-printCategories()
-form.update_button.clicked.connect(printCategories)
+printRecords()
 form.add_button.clicked.connect(addRecord)
 form.delete_button.clicked.connect(deleteRecord)
 

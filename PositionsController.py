@@ -3,11 +3,11 @@ import sys
 import psycopg2
 from PyQt5 import uic, QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
-from Views import Categories
+
 
 Form, Window = uic.loadUiType("Views/Positions.ui")
-conn = psycopg2.connect(dbname="HotelDB", user="shapochka", port="5432",
-                        password="31657101hd", host="", hostaddr="192.168.56.101")
+conn = psycopg2.connect(dbname="HotelDB", user="cat-techie", port="5432",
+                        password="31657101hd", host="", hostaddr="")
 cursor = conn.cursor()
 
 app = QApplication([])
@@ -20,7 +20,7 @@ window.show()
 
 def printRecords():
     print("Update")
-    cursor.execute("SELECT * FROM positions;")
+    cursor.execute("SELECT * FROM position;")
     row = 0
     for tup in cursor:
         col = 0
@@ -43,10 +43,12 @@ def addRecord():
     desc = form.adding_desc.text()
     print("Add")
     if categoryType != "":
-        cursor.execute("INSERT INTO positions VALUES (\'{0}\', \'{1}\', DEFAULT);".
+        cursor.execute("INSERT INTO position VALUES (DEFAULT, \'{0}\', \'{1}\');".
                        format(categoryType, desc))
     conn.commit()
     printRecords()
+    form.adding_type.clear()
+    form.adding_desc.clear()
 
 
 def deleteRecord():
@@ -54,9 +56,9 @@ def deleteRecord():
     categoryID = form.id_category.text()
     print("Delete")
     if categoryID != "":
-        cursor.execute("DELETE FROM positions WHERE id=\'{0}\';".format(categoryID))
+        cursor.execute("DELETE FROM position WHERE position_id=\'{0}\';".format(categoryID))
     elif categoryType != "":
-        cursor.execute("DELETE FROM positions WHERE name=\'{0}\';".format(categoryType))
+        cursor.execute("DELETE FROM position WHERE name=\'{0}\';".format(categoryType))
     conn.commit()
     printRecords()
 

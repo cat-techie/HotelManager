@@ -7,8 +7,8 @@ from PyQt5.uic.properties import QtGui
 
 class MainWindow(QtWidgets.QMainWindow):
     Form, Window = uic.loadUiType("Views/MainPage.ui")
-    conn = psycopg2.connect(dbname="HotelDB", user="shapochka", port="5432",
-                            password="31657101hd", host="", hostaddr="192.168.56.101")
+    conn = psycopg2.connect(dbname="HotelDB", user="cat-techie", port="5432",
+                            password="31657101hd", host="", hostaddr="")
     cursor = conn.cursor()
 
     app = QApplication([])
