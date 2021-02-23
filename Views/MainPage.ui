@@ -16,49 +16,49 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="invoices_button">
       <property name="text">
        <string>Счета</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="cards_button">
       <property name="text">
        <string>Карточки клиентов</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QPushButton" name="reg_button">
       <property name="text">
        <string>Регистрация гостя</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_8">
+     <widget class="QPushButton" name="booking_button">
       <property name="text">
        <string>Бронирование номера</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="rooms_button">
       <property name="text">
        <string>Список комнат</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="price_list_button">
       <property name="text">
        <string>Прайс-лист на номера</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="services_button">
       <property name="text">
        <string>Услуги клиентам</string>
       </property>
@@ -75,41 +75,39 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="price_list_action">
     <property name="title">
      <string>Справочники</string>
     </property>
-    <addaction name="action_3"/>
+    <addaction name="staff_action"/>
     <addaction name="separator"/>
-    <addaction name="action_5"/>
+    <addaction name="guests_action"/>
     <addaction name="separator"/>
-    <addaction name="action_7"/>
+    <addaction name="category_action"/>
     <addaction name="separator"/>
-    <addaction name="action_properties"/>
-    <addaction name="separator"/>
-    <addaction name="action_11"/>
+    <addaction name="property_action"/>
     <addaction name="separator"/>
     <addaction name="action_13"/>
    </widget>
-   <addaction name="menu"/>
+   <addaction name="price_list_action"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_3">
+  <action name="staff_action">
    <property name="text">
     <string>Сотрудники</string>
    </property>
   </action>
-  <action name="action_5">
+  <action name="guests_action">
    <property name="text">
     <string>Гости</string>
    </property>
   </action>
-  <action name="action_7">
+  <action name="category_action">
    <property name="text">
     <string>Категории номеров</string>
    </property>
   </action>
-  <action name="action_properties">
+  <action name="property_action">
    <property name="text">
     <string>Свойства номеров</string>
    </property>

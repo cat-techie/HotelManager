@@ -1,7 +1,7 @@
 import sys
 
 import psycopg2
-from PyQt5 import uic, QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 
 
