@@ -77,6 +77,41 @@ class MainWindow(QtWidgets.QMainWindow):
                 col += 1
             self.ui.Booking.resizeColumnsToContents()
 
+        cursor.execute("SELECT * FROM get_guests()")
+        for tup in cursor:
+            col = 0
+            self.ui.guest_cards.setRowCount(self.ui.guest_cards.rowCount() + 1)
+            for item in tup:
+                cellInfo = QTableWidgetItem(str(item))
+                cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                self.ui.guest_cards.setItem(self.ui.guest_cards.rowCount() - 1, col, cellInfo)
+                col += 1
+            self.ui.guest_cards.resizeColumnsToContents()
+
+        cursor.execute("SELECT * FROM get_services()")
+        for tup in cursor:
+            col = 0
+            self.ui.service_tableWidget.setRowCount(self.ui.service_tableWidget.rowCount() + 1)
+            for item in tup:
+                cellInfo = QTableWidgetItem(str(item))
+                cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                self.ui.service_tableWidget.setItem(self.ui.service_tableWidget.rowCount() - 1, col,
+                                                    cellInfo)
+                col += 1
+            self.ui.service_tableWidget.resizeColumnsToContents()
+
+        cursor.execute("SELECT * FROM list_rooms();")
+        for tup in cursor:
+            col = 0
+            self.ui.room_tableWidget.setRowCount(self.ui.room_tableWidget.rowCount() + 1)
+            for item in tup:
+                cellInfo = QTableWidgetItem(str(item))
+                cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                self.ui.room_tableWidget.setItem(self.ui.room_tableWidget.rowCount() - 1, col,
+                                                 cellInfo)
+                col += 1
+            self.ui.room_tableWidget.resizeColumnsToContents()
+
         self.ui.status_button.clicked.connect(self.open_status)
         self.ui.position_button.clicked.connect(self.open_positions)
         self.ui.categories_button.clicked.connect(self.open_categories)
@@ -86,27 +121,54 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.addGuest_Button.clicked.connect(self.add_guest)
         self.ui.searchButton.clicked.connect(self.find_guest)
         self.ui.addBookingButton.clicked.connect(self.add_booking)
+        self.ui.arrangeButton.clicked.connect(self.order_service)
+        self.ui.invoice_pushButton.clicked.connect(self.get_guest_invoices)
+
+    def get_guest_invoices(self):
+        cardID = self.ui.guest_card_edit_book_2.text()
+
+        cursor.execute("SELECT * FROM get_guest_invoices(%s);", cardID)
+        for tup in cursor:
+            col = 0
+            self.ui.tableWidget_invoice.setRowCount(self.ui.tableWidget_invoice.rowCount() + 1)
+            for item in tup:
+                cellInfo = QTableWidgetItem(str(item))
+                cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                self.ui.tableWidget_invoice.setItem(self.ui.tableWidget_invoice.rowCount() - 1, col, cellInfo)
+                col += 1
+            self.ui.tableWidget_invoice.resizeColumnsToContents()
+
+        cursor.execute("SELECT get_to_pay(%s);", cardID)
+        self.ui.resultAmount.setText(str(cursor.fetchall()[0][0]))
+
+    def order_service(self):
+        cardId = self.ui.guest_card_edit.text()
+        service = int(
+            self.ui.service_tableWidget.item(self.ui.service_tableWidget.currentItem().row(),
+                                             0).text())
+        recdate = datetime.date.today()
+
+        cursor.execute("SELECT order_service(%s, %s, %s)", (cardId, service, recdate))
+        con.commit()
 
     def add_booking(self):
-        nameGuest = self.ui.booking_nameEdit.text()
-        lastNameGuest = self.ui.booking_lastnameEdit.text()
-        passport = self.ui.booking_passportEdit.text()
         arrDate = self.ui.booking_arrivalDateEdit_2.date().toPyDate()
         depDate = self.ui.booking_departureDateEdit.date().toPyDate()
         room = int(self.ui.Booking.item(self.ui.Booking.currentItem().row(), 0).text())
+        cardID = self.ui.guest_card_edit_book.text()
 
-        cursor.execute("SELECT new_booking(find_guest(%s, %s, %s), %s, %s, %s, %s)",
-                       (nameGuest, lastNameGuest, passport, room, arrDate, depDate, datetime.date.today()))
+        cursor.execute("SELECT new_booking(%s, %s, %s, %s, %s)",
+                       (cardID, room, arrDate, depDate, datetime.date.today()))
         con.commit()
-
 
     def find_guest(self):
         nameGuest = self.ui.search_nameEdit.text()
         lastNameGuest = self.ui.search_lastnameEdit.text()
         passport = self.ui.search_passportEdit.text()
 
-        cursor.execute("SELECT guest_id, first_name, last_name, phone_number, birth_date, passport FROM guest WHERE guest_id = find_guest(%s, %s, %s);",
-                       (nameGuest, lastNameGuest, passport))
+        cursor.execute(
+            "SELECT guest_id, first_name, last_name, phone_number, birth_date, passport FROM guest WHERE guest_id = find_guest(%s, %s, %s);",
+            (nameGuest, lastNameGuest, passport))
         for tup in cursor:
             col = 0
             self.ui.searchResultTable.setRowCount(self.ui.searchResultTable.rowCount() + 1)
@@ -161,6 +223,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def open_rooms(self):
         dialog = Room(self)
         dialog.exec_()
+
 
 
 class Room(QtWidgets.QDialog):

@@ -84,7 +84,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Войти</string>
+    <string>Войти как гость</string>
    </property>
   </widget>
  </widget>
