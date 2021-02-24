@@ -19,6 +19,7 @@ from pyUI.PositionsUI import Ui_Positions
 from pyUI.CategoriesUI import Ui_Categories
 from pyUI.PropertyUI import Ui_Property
 from pyUI.RoomWindowUI import Ui_RoomsWindow
+from pyUI.MainWindowGuestUI import Ui_MainWindowGuest
 
 
 class Login(QDialog):
@@ -27,37 +28,26 @@ class Login(QDialog):
         self.ui = Ui_Login()
         self.ui.setupUi(self)
         self.ui.loginbutton.clicked.connect(self.loginfunction)
+        self.ui.pushButton.clicked.connect(self.loginfunction)
 
     def loginfunction(self):
         username = self.ui.username.text()
         password = self.ui.password.text()
-        try:
-            cursor.execute("select get_key_and_salt(%s)", (username,))
-            m = cursor.fetchall()
-            m = list(m)
-            for i in m:
-                i = str(i)[2:len(i) - 4]
-                if self.check_password(i, password):
-                    cursor.execute("SELECT public.login(%s, %s)", (username, i))
-                    r = cursor.fetchone()
-                    global role
-                    role = str(r)[1:2]
-                    break
+        cursor.execute("select login(%s, %s)", (username, password))
+        global role_id
+        role_id = str(cursor.fetchall()[0][0])
+        print(role_id)
+        self.accept()
 
-            self.accept()
-        except psycopg2.errors.RaiseException:
-            m = QBoxes.wrongPass(self)
-            con.rollback()
+    def hash_password(self, password):
+        # uuid используется для генерации случайного числа
+        salt = uuid.uuid4().hex
+        return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
 
     def check_password(self, hashed_password, user_password):
         h_password, salt = hashed_password.split(':')
         if h_password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest():
             return True
-
-    # def gotocreate(self):
-    # createacc = CreateAcc()
-    # widget.addWidget(createacc)
-    # widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -65,6 +55,48 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        if role_id == '1':
+
+            cursor.execute("SELECT * FROM get_guests()")
+            for tup in cursor:
+                col = 0
+                self.ui.guest_cards.setRowCount(self.ui.guest_cards.rowCount() + 1)
+                for item in tup:
+                    cellInfo = QTableWidgetItem(str(item))
+                    cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    self.ui.guest_cards.setItem(self.ui.guest_cards.rowCount() - 1, col, cellInfo)
+                    col += 1
+                self.ui.guest_cards.resizeColumnsToContents()
+
+            cursor.execute("SELECT * FROM get_services()")
+            for tup in cursor:
+                col = 0
+                self.ui.service_tableWidget.setRowCount(self.ui.service_tableWidget.rowCount() + 1)
+                for item in tup:
+                    cellInfo = QTableWidgetItem(str(item))
+                    cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    self.ui.service_tableWidget.setItem(self.ui.service_tableWidget.rowCount() - 1,
+                                                        col,
+                                                        cellInfo)
+                    col += 1
+                self.ui.service_tableWidget.resizeColumnsToContents()
+
+            if role_id == '2':
+                self.ui.catalog_3.hide()
+
+            self.ui.status_button.clicked.connect(self.open_status)
+            self.ui.position_button.clicked.connect(self.open_positions)
+            self.ui.categories_button.clicked.connect(self.open_categories)
+            self.ui.properties_button.clicked.connect(self.open_properties)
+            self.ui.rooms_button.clicked.connect(self.open_rooms)
+
+            self.ui.searchButton.clicked.connect(self.find_guest)
+            self.ui.arrangeButton.clicked.connect(self.order_service)
+
+        elif role_id == '3':
+            self.ui = Ui_MainWindowGuest()
+            self.ui.setupUi(self)
 
         cursor.execute("SELECT * FROM free_rooms()")
         for tup in cursor:
@@ -76,29 +108,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.Booking.setItem(self.ui.Booking.rowCount() - 1, col, cellInfo)
                 col += 1
             self.ui.Booking.resizeColumnsToContents()
-
-        cursor.execute("SELECT * FROM get_guests()")
-        for tup in cursor:
-            col = 0
-            self.ui.guest_cards.setRowCount(self.ui.guest_cards.rowCount() + 1)
-            for item in tup:
-                cellInfo = QTableWidgetItem(str(item))
-                cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.guest_cards.setItem(self.ui.guest_cards.rowCount() - 1, col, cellInfo)
-                col += 1
-            self.ui.guest_cards.resizeColumnsToContents()
-
-        cursor.execute("SELECT * FROM get_services()")
-        for tup in cursor:
-            col = 0
-            self.ui.service_tableWidget.setRowCount(self.ui.service_tableWidget.rowCount() + 1)
-            for item in tup:
-                cellInfo = QTableWidgetItem(str(item))
-                cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.service_tableWidget.setItem(self.ui.service_tableWidget.rowCount() - 1, col,
-                                                    cellInfo)
-                col += 1
-            self.ui.service_tableWidget.resizeColumnsToContents()
 
         cursor.execute("SELECT * FROM list_rooms();")
         for tup in cursor:
@@ -112,16 +121,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 col += 1
             self.ui.room_tableWidget.resizeColumnsToContents()
 
-        self.ui.status_button.clicked.connect(self.open_status)
-        self.ui.position_button.clicked.connect(self.open_positions)
-        self.ui.categories_button.clicked.connect(self.open_categories)
-        self.ui.properties_button.clicked.connect(self.open_properties)
-        self.ui.rooms_button.clicked.connect(self.open_rooms)
-
         self.ui.addGuest_Button.clicked.connect(self.add_guest)
-        self.ui.searchButton.clicked.connect(self.find_guest)
         self.ui.addBookingButton.clicked.connect(self.add_booking)
-        self.ui.arrangeButton.clicked.connect(self.order_service)
         self.ui.invoice_pushButton.clicked.connect(self.get_guest_invoices)
 
     def get_guest_invoices(self):
@@ -134,7 +135,8 @@ class MainWindow(QtWidgets.QMainWindow):
             for item in tup:
                 cellInfo = QTableWidgetItem(str(item))
                 cellInfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.tableWidget_invoice.setItem(self.ui.tableWidget_invoice.rowCount() - 1, col, cellInfo)
+                self.ui.tableWidget_invoice.setItem(self.ui.tableWidget_invoice.rowCount() - 1, col,
+                                                    cellInfo)
                 col += 1
             self.ui.tableWidget_invoice.resizeColumnsToContents()
 
@@ -223,7 +225,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def open_rooms(self):
         dialog = Room(self)
         dialog.exec_()
-
 
 
 class Room(QtWidgets.QDialog):
@@ -464,6 +465,8 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     global role_id
     login = Login()
-    mainwindow = MainWindow()
-    mainwindow.show()
+    login.show()
+    if login.exec_():
+        mainwindow = MainWindow()
+        mainwindow.show()
     sys.exit(app.exec_())

@@ -44,7 +44,7 @@ class Ui_Login(object):
         self.username.setPlaceholderText(_translate("Login", "Логин"))
         self.password.setPlaceholderText(_translate("Login", "Пароль"))
         self.loginbutton.setText(_translate("Login", "Логин"))
-        self.pushButton.setText(_translate("Login", "Войти"))
+        self.pushButton.setText(_translate("Login", "Войти как гость"))
 
 
 if __name__ == "__main__":
