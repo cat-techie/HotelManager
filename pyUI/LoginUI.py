@@ -12,46 +12,46 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Login(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.setEnabled(True)
-        Dialog.resize(480, 640)
-        self.label = QtWidgets.QLabel(Dialog)
+    def setupUi(self, Login):
+        Login.setObjectName("Login")
+        Login.setEnabled(True)
+        Login.resize(480, 640)
+        self.label = QtWidgets.QLabel(Login)
         self.label.setGeometry(QtCore.QRect(200, 120, 120, 61))
         self.label.setStyleSheet("font-size:28pt;")
         self.label.setObjectName("label")
-        self.username = QtWidgets.QLineEdit(Dialog)
+        self.username = QtWidgets.QLineEdit(Login)
         self.username.setGeometry(QtCore.QRect(120, 220, 240, 31))
         self.username.setObjectName("username")
-        self.password = QtWidgets.QLineEdit(Dialog)
+        self.password = QtWidgets.QLineEdit(Login)
         self.password.setGeometry(QtCore.QRect(120, 290, 240, 31))
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password.setObjectName("password")
-        self.loginbutton = QtWidgets.QPushButton(Dialog)
+        self.loginbutton = QtWidgets.QPushButton(Login)
         self.loginbutton.setGeometry(QtCore.QRect(180, 380, 120, 31))
         self.loginbutton.setObjectName("loginbutton")
-        self.pushButton = QtWidgets.QPushButton(Dialog)
+        self.pushButton = QtWidgets.QPushButton(Login)
         self.pushButton.setGeometry(QtCore.QRect(180, 440, 121, 31))
         self.pushButton.setObjectName("pushButton")
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(Login)
+        QtCore.QMetaObject.connectSlotsByName(Login)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Login"))
-        self.label.setText(_translate("Dialog", "Вход"))
-        self.username.setPlaceholderText(_translate("Dialog", "Логин"))
-        self.password.setPlaceholderText(_translate("Dialog", "Пароль"))
-        self.loginbutton.setText(_translate("Dialog", "Логин"))
-        self.pushButton.setText(_translate("Dialog", "Войти"))
+        Login.setWindowTitle(_translate("Login", "Login"))
+        self.label.setText(_translate("Login", "Вход"))
+        self.username.setPlaceholderText(_translate("Login", "Логин"))
+        self.password.setPlaceholderText(_translate("Login", "Пароль"))
+        self.loginbutton.setText(_translate("Login", "Логин"))
+        self.pushButton.setText(_translate("Login", "Войти"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    Login = QtWidgets.QDialog()
+    ui = Ui_Login()
+    ui.setupUi(Login)
+    Login.show()
     sys.exit(app.exec_())

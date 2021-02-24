@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>Positions</class>
+ <widget class="QMainWindow" name="Positions">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -23,7 +23,7 @@
    <string>Справочник позиций сотрудников</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="positions_tableWidget">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -123,7 +123,7 @@
      <string>Удалить</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="adding_type">
+   <widget class="QLineEdit" name="position_name">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -158,7 +158,7 @@
      <string>Описание</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="id_category">
+   <widget class="QLineEdit" name="id_position">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -191,17 +191,6 @@
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>881</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

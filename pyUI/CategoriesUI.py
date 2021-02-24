@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Categories.ui'
+# Form implementation generated from reading ui file 'C:\Hotel\Views\Categories.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -11,14 +11,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.setEnabled(True)
-        MainWindow.resize(881, 639)
-        MainWindow.setMouseTracking(True)
-        MainWindow.setTabletTracking(True)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_Categories(object):
+    def setupUi(self, Categories):
+        Categories.setObjectName("Categories")
+        Categories.setEnabled(True)
+        Categories.resize(881, 639)
+        Categories.setMouseTracking(True)
+        Categories.setTabletTracking(True)
+        self.centralwidget = QtWidgets.QWidget(Categories)
+        self.centralwidget.setEnabled(True)
+        self.centralwidget.setMouseTracking(False)
         self.centralwidget.setObjectName("centralwidget")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setEnabled(True)
@@ -70,32 +72,35 @@ class Ui_MainWindow(object):
         self.delete_type.setText("")
         self.delete_type.setMaxLength(25)
         self.delete_type.setObjectName("delete_type")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 881, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        #Categories.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(Categories)
+        QtCore.QMetaObject.connectSlotsByName(Categories)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, Categories):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Справочник категорий"))
+        Categories.setWindowTitle(_translate("Categories", "Справочник категорий"))
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "ID"))
+        item.setText(_translate("Categories", "ID"))
         item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Тип"))
+        item.setText(_translate("Categories", "Тип"))
         item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Описание"))
-        self.update_button.setText(_translate("MainWindow", "Обновить"))
-        self.alter_button.setText(_translate("MainWindow", "Редактировать"))
-        self.add_button.setText(_translate("MainWindow", "Добавить"))
-        self.delete_button.setText(_translate("MainWindow", "Удалить"))
-        self.adding_type.setPlaceholderText(_translate("MainWindow", "Тип"))
-        self.adding_desc.setPlaceholderText(_translate("MainWindow", "Описание"))
-        self.id_category.setPlaceholderText(_translate("MainWindow", "id"))
-        self.delete_type.setPlaceholderText(_translate("MainWindow", "Тип"))
+        item.setText(_translate("Categories", "Описание"))
+        self.update_button.setText(_translate("Categories", "Обновить"))
+        self.alter_button.setText(_translate("Categories", "Редактировать"))
+        self.add_button.setText(_translate("Categories", "Добавить"))
+        self.delete_button.setText(_translate("Categories", "Удалить"))
+        self.adding_type.setPlaceholderText(_translate("Categories", "Тип"))
+        self.adding_desc.setPlaceholderText(_translate("Categories", "Описание"))
+        self.id_category.setPlaceholderText(_translate("Categories", "id"))
+        self.delete_type.setPlaceholderText(_translate("Categories", "Тип"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Categories = QtWidgets.QMainWindow()
+    ui = Ui_Categories()
+    ui.setupUi(Categories)
+    Categories.show()
+    sys.exit(app.exec_())

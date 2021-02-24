@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>Property</class>
+ <widget class="QMainWindow" name="Property">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>881</width>
-    <height>639</height>
+    <width>634</width>
+    <height>307</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -20,9 +20,12 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Справочник свойств номеров</string>
+   <string>Справочник свойст номеров</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="widget">
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
+   </property>
    <widget class="QTableWidget" name="tableWidget">
     <property name="enabled">
      <bool>true</bool>
@@ -30,9 +33,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>881</width>
-      <height>461</height>
+      <y>10</y>
+      <width>261</width>
+      <height>281</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -57,38 +60,12 @@
       <string>Название</string>
      </property>
     </column>
-    <column>
-     <property name="text">
-      <string>Описание</string>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>8</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-       <stylestrategy>PreferDefault</stylestrategy>
-      </font>
-     </property>
-    </column>
-   </widget>
-   <widget class="QPushButton" name="update_button">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>480</y>
-      <width>101</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Обновить</string>
-    </property>
    </widget>
    <widget class="QPushButton" name="alter_button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>570</y>
+      <x>270</x>
+      <y>180</y>
       <width>101</width>
       <height>23</height>
      </rect>
@@ -100,8 +77,8 @@
    <widget class="QPushButton" name="add_button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>510</y>
+      <x>270</x>
+      <y>60</y>
       <width>101</width>
       <height>23</height>
      </rect>
@@ -113,8 +90,8 @@
    <widget class="QPushButton" name="delete_button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>540</y>
+      <x>270</x>
+      <y>120</y>
       <width>101</width>
       <height>23</height>
      </rect>
@@ -126,8 +103,8 @@
    <widget class="QLineEdit" name="adding_type">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>510</y>
+      <x>380</x>
+      <y>60</y>
       <width>113</width>
       <height>20</height>
      </rect>
@@ -136,33 +113,17 @@
      <string/>
     </property>
     <property name="maxLength">
-     <number>25</number>
+     <number>50</number>
     </property>
     <property name="placeholderText">
-     <string>Тип</string>
+     <string>Название</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="adding_desc">
+   <widget class="QLineEdit" name="id_property">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>510</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="maxLength">
-     <number>255</number>
-    </property>
-    <property name="placeholderText">
-     <string>Описание</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="id_category">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>540</y>
+      <x>380</x>
+      <y>120</y>
       <width>113</width>
       <height>20</height>
      </rect>
@@ -174,8 +135,8 @@
    <widget class="QLineEdit" name="delete_type">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>540</y>
+      <x>500</x>
+      <y>120</y>
       <width>113</width>
       <height>20</height>
      </rect>
@@ -187,21 +148,10 @@
      <number>25</number>
     </property>
     <property name="placeholderText">
-     <string>Тип</string>
+     <string>Название</string>
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>881</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

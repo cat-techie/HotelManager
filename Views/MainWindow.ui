@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Aircompany</string>
+   <string>Hotel</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="catalog">
@@ -27,7 +27,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>2</number>
     </property>
     <property name="movable">
      <bool>true</bool>
@@ -49,7 +49,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="addPassengers">
        <attribute name="title">
@@ -69,19 +69,6 @@
         </property>
         <property name="text">
          <string>Регистрация гостя</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="passwordEdit">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>440</y>
-          <width>211</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="placeholderText">
-         <string>Пароль</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="nameEdit">
@@ -123,7 +110,7 @@
          <string>Номер телефона</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="emailEdit">
+       <widget class="QLineEdit" name="passportEdit">
         <property name="geometry">
          <rect>
           <x>300</x>
@@ -133,40 +120,14 @@
          </rect>
         </property>
         <property name="placeholderText">
-         <string>E-mail</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="passportEdit">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>320</y>
-          <width>211</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="placeholderText">
          <string>Паспорт</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="loginEdit">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>400</y>
-          <width>211</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="placeholderText">
-         <string>Логин</string>
         </property>
        </widget>
        <widget class="QDateEdit" name="dateofbirthEdit">
         <property name="geometry">
          <rect>
           <x>300</x>
-          <y>360</y>
+          <y>320</y>
           <width>211</width>
           <height>21</height>
          </rect>
@@ -182,17 +143,56 @@
          </date>
         </property>
        </widget>
-       <widget class="QPushButton" name="addPassengerButton">
+       <widget class="QPushButton" name="addGuest_Button">
         <property name="geometry">
          <rect>
-          <x>340</x>
-          <y>480</y>
+          <x>350</x>
+          <y>370</y>
           <width>111</width>
           <height>28</height>
          </rect>
         </property>
         <property name="text">
          <string>Зарегестрировать</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="nameEdit_payer">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>160</y>
+          <width>211</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Имя плательщика</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lastnameEdit_payer">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>200</y>
+          <width>211</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Фамилия плательщика</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="passportEdit_payer">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>240</y>
+          <width>211</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Паспорт плательщика</string>
         </property>
        </widget>
       </widget>
@@ -298,6 +298,11 @@
         <row/>
         <column>
          <property name="text">
+          <string>ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
           <string>Имя</string>
          </property>
         </column>
@@ -309,11 +314,6 @@
         <column>
          <property name="text">
           <string>Телефон</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>E-mail</string>
          </property>
         </column>
         <column>
@@ -347,7 +347,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="SearchFlights">
        <attribute name="title">
@@ -934,7 +934,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">
@@ -943,8 +943,8 @@
        <widget class="QLineEdit" name="booking_nameEdit">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>120</y>
+          <x>80</x>
+          <y>410</y>
           <width>211</width>
           <height>22</height>
          </rect>
@@ -956,8 +956,8 @@
        <widget class="QLineEdit" name="booking_lastnameEdit">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>160</y>
+          <x>80</x>
+          <y>450</y>
           <width>211</width>
           <height>22</height>
          </rect>
@@ -969,8 +969,8 @@
        <widget class="QLineEdit" name="booking_passportEdit">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>200</y>
+          <x>80</x>
+          <y>490</y>
           <width>211</width>
           <height>22</height>
          </rect>
@@ -979,31 +979,31 @@
          <string>Паспорт</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="room_comboBox">
+       <widget class="QDateEdit" name="booking_departureDateEdit">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>240</y>
+          <x>330</x>
+          <y>440</y>
           <width>211</width>
           <height>22</height>
          </rect>
         </property>
-       </widget>
-       <widget class="QDateEdit" name="booking_departureDateEdit">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>320</y>
-          <width>211</width>
-          <height>22</height>
-         </rect>
+        <property name="dateTime">
+         <datetime>
+          <hour>0</hour>
+          <minute>0</minute>
+          <second>0</second>
+          <year>2021</year>
+          <month>1</month>
+          <day>1</day>
+         </datetime>
         </property>
        </widget>
        <widget class="QLabel" name="label_30">
         <property name="geometry">
          <rect>
           <x>310</x>
-          <y>50</y>
+          <y>20</y>
           <width>251</width>
           <height>41</height>
          </rect>
@@ -1015,38 +1015,92 @@
          <string>Бронирование</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="discount_comboBox">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>360</y>
-          <width>211</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QPushButton" name="addBookingButton">
         <property name="geometry">
          <rect>
-          <x>350</x>
-          <y>400</y>
-          <width>93</width>
-          <height>28</height>
+          <x>570</x>
+          <y>410</y>
+          <width>161</width>
+          <height>51</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>Add</string>
+         <string>Добавить</string>
         </property>
        </widget>
        <widget class="QDateEdit" name="booking_arrivalDateEdit_2">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>280</y>
+          <x>330</x>
+          <y>410</y>
           <width>211</width>
           <height>22</height>
          </rect>
         </property>
+        <property name="dateTime">
+         <datetime>
+          <hour>0</hour>
+          <minute>0</minute>
+          <second>0</second>
+          <year>2021</year>
+          <month>1</month>
+          <day>1</day>
+         </datetime>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="Booking">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>100</y>
+          <width>691</width>
+          <height>281</height>
+         </rect>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Номер</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Статус</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Категория</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Стоимость</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Свойство</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Описание</string>
+         </property>
+        </column>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_8">
@@ -1253,6 +1307,9 @@
      </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <attribute name="title">
       <string>Check-In</string>
      </attribute>
@@ -1269,7 +1326,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_9">
        <attribute name="title">
@@ -1478,513 +1535,70 @@
      <attribute name="title">
       <string>Справочники</string>
      </attribute>
-     <widget class="QTabWidget" name="catalog_2">
+     <widget class="QPushButton" name="status_button">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>881</width>
-        <height>611</height>
+        <x>250</x>
+        <y>60</y>
+        <width>351</width>
+        <height>61</height>
        </rect>
       </property>
-      <property name="tabPosition">
-       <enum>QTabWidget::West</enum>
+      <property name="text">
+       <string>Статусы</string>
       </property>
-      <property name="currentIndex">
-       <number>0</number>
+     </widget>
+     <widget class="QPushButton" name="position_button">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>140</y>
+        <width>351</width>
+        <height>61</height>
+       </rect>
       </property>
-      <widget class="QWidget" name="status">
-       <attribute name="title">
-        <string>Статус</string>
-       </attribute>
-       <widget class="QLineEdit" name="id_category_2">
-        <property name="geometry">
-         <rect>
-          <x>410</x>
-          <y>120</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="placeholderText">
-         <string>id</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="delete_type_2">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>120</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="maxLength">
-         <number>25</number>
-        </property>
-        <property name="placeholderText">
-         <string>Название</string>
-        </property>
-       </widget>
-       <widget class="QTableWidget" name="tableWidget_2">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>10</y>
-          <width>261</width>
-          <height>281</height>
-         </rect>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>881</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="autoFillBackground">
-         <bool>true</bool>
-        </property>
-        <column>
-         <property name="text">
-          <string>ID</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Название</string>
-         </property>
-        </column>
-       </widget>
-       <widget class="QPushButton" name="add_button_2">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>60</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Добавить</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="alter_button_2">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>180</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Редактировать</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="adding_type_2">
-        <property name="geometry">
-         <rect>
-          <x>410</x>
-          <y>60</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="maxLength">
-         <number>50</number>
-        </property>
-        <property name="placeholderText">
-         <string>Название</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="delete_button_2">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>120</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Удалить</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="status_button">
-        <property name="geometry">
-         <rect>
-          <x>640</x>
-          <y>20</y>
-          <width>75</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Status</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="position">
-       <attribute name="title">
-        <string>Позиции</string>
-       </attribute>
-       <widget class="QTableWidget" name="tableWidget">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>881</width>
-          <height>461</height>
-         </rect>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>881</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="autoFillBackground">
-         <bool>true</bool>
-        </property>
-        <column>
-         <property name="text">
-          <string>ID</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Название</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Описание</string>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <stylestrategy>PreferDefault</stylestrategy>
-          </font>
-         </property>
-        </column>
-       </widget>
-       <widget class="QLineEdit" name="adding_type">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>500</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="maxLength">
-         <number>50</number>
-        </property>
-        <property name="placeholderText">
-         <string>Название</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="delete_type">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>530</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="maxLength">
-         <number>25</number>
-        </property>
-        <property name="placeholderText">
-         <string>Название</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="adding_desc">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>500</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="maxLength">
-         <number>255</number>
-        </property>
-        <property name="placeholderText">
-         <string>Описание</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="delete_button">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>530</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Удалить</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="alter_button">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>560</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Редактировать</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="add_button">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>500</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Добавить</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="update_button">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>470</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Обновить</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="id_category">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>530</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="placeholderText">
-         <string>id</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="category">
-       <attribute name="title">
-        <string>Категории</string>
-       </attribute>
-       <widget class="QPushButton" name="add_button_3">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>510</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Добавить</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="update_button_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>480</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Обновить</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="adding_type_3">
-        <property name="geometry">
-         <rect>
-          <x>130</x>
-          <y>510</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="maxLength">
-         <number>25</number>
-        </property>
-        <property name="placeholderText">
-         <string>Тип</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="alter_button_3">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>570</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Редактировать</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="id_category_3">
-        <property name="geometry">
-         <rect>
-          <x>130</x>
-          <y>540</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="placeholderText">
-         <string>id</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="delete_type_3">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>540</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="maxLength">
-         <number>25</number>
-        </property>
-        <property name="placeholderText">
-         <string>Тип</string>
-        </property>
-       </widget>
-       <widget class="QTableWidget" name="tableWidget_3">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>881</width>
-          <height>461</height>
-         </rect>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>881</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="autoFillBackground">
-         <bool>true</bool>
-        </property>
-        <column>
-         <property name="text">
-          <string>ID</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Тип</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Описание</string>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <stylestrategy>PreferDefault</stylestrategy>
-          </font>
-         </property>
-        </column>
-       </widget>
-       <widget class="QPushButton" name="delete_button_3">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>540</y>
-          <width>101</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Удалить</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="adding_desc_2">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>510</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="maxLength">
-         <number>255</number>
-        </property>
-        <property name="placeholderText">
-         <string>Описание</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_11">
-       <attribute name="title">
-        <string>Page</string>
-       </attribute>
-      </widget>
+      <property name="text">
+       <string>Должности сотрудников</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="categories_button">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>230</y>
+        <width>351</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Категории номеров</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="properties_button">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>310</y>
+        <width>351</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Свойства номеров</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="rooms_button">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>410</y>
+        <width>361</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>КОМНАТЫ</string>
+      </property>
      </widget>
     </widget>
    </widget>
